@@ -1,0 +1,17 @@
+Binary search
+
+Assume the following list:
+
+1, 2, 4, 8, 12, 14, 19, 31, 46, 47, 48, 49, 53, 55, 60, 71, 79, 81, 95, 123, 1001
+
+Always round up if decimals are produced when calculating the middle of a section.
+
+Write down the numbers the computer would look at if you asked if:
+
+a) 2 was in the list.
+
+b) 18 was in the list
+
+c) 1000 was in the list
+
+d) 95 was in the list
