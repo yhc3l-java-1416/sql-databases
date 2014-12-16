@@ -1,0 +1,9 @@
+1) Insert Richy Rich a new member of staff into the staff table.  He has a salary of 78000. The other information you don't know yet.
+
+2) Insert details about yourself into the staff table, fill in every column.
+
+3) Update Richy Rich give him a dob of 1989-12-16 and an address of 12 Huttington drive, Cambridge CB12 279.
+
+4) Update all people who are older than 45 and give them a 1000 pay rise.
+
+5) Delete yourself from the table

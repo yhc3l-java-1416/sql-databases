@@ -1,0 +1,129 @@
+1) Select all the columns in the table.
+
+	SELECT * 
+	FROM staff;
+
+2) Select all the columns in the table with a surname of Doyle.
+
+	SELECT * 
+	FROM staff 
+	WHERE surname = 'Doyle';
+
+3) Select all the columns in the table with a surname that contains the string le.
+
+	SELECT * 
+	FROM staff 
+	WHERE surname like '%le%';
+
+4) Select the firstname and surname of all the staff with a letter b in their firstname or in their surname.
+
+	SELECT firstname, surname 
+	FROM staff 
+	WHERE surname like '%b%' or firstname like '%b%';
+
+5) Select the firstname, surname and salary of the staff with a salary greater than 25000.
+
+	SELECT firstname, surname, salary 
+	FROM staff 
+	WHERE salary > 25000;
+
+6) Count (using sql), the number of staff that earn less than 25000.
+
+	SELECT count(firstname) 
+	FROM staff 
+	WHERE salary < 25000;
+
+7) Count the number of staff that earn greater than 20000 but less than 25000.
+
+	SELECT count(firstname) 
+	FROM staff 
+	WHERE salary > 20000 AND salary < 25000;
+
+8) Select the firstname and surname of all staff but using the 'as' keyword give translate the column titles to Swedish fornamn, efternamn.   
+
+	SELECT firstname as fornamn, surname as efternamn
+	FROM staff
+
+9) Select a table that has three columns and one row containing the minimum, maximum and average salary of all the staff.
+
+	SELECT MIN(salary) as min_salary, MAX(salary) as max_salary, AVG(salary) as average_salary 
+	FROM staff;
+
+10) Select everything from the table, use the order by keywords to sort the table alphabetically by surname.
+
+	SELECT *  
+	FROM floggit.staff 
+	ORDER BY surname;
+
+11) Reverse the order of the selection.
+
+	SELECT * 
+	FROM floggit.staff 
+	ORDER BY surname DESC;
+
+12) Now order the selection first by firstname and then by surname.
+
+	SELECT * 
+	FROM floggit.staff 
+	ORDER BY firstname, surname;
+
+13) Use the limit keyword to return the first 10 members of staff
+
+	SELECT * 
+	FROM staff  
+	ORDER BY surname 
+	LIMIT 0,10;
+
+14) Use the limit keyword to return only the rows 10 to 20 from the table.
+
+	SELECT * 
+	FROM staff  
+	ORDER BY surname 
+	LIMIT 10,10;
+
+15) Use the limit keyword to return only the rows 20 to 30.
+	
+	SELECT * 
+	FROM staff  
+	ORDER BY surname 
+	LIMIT 20,10;
+
+Advanced
+16) Select only the year from the dob column for all floggit staff.
+
+	SELECT *, YEAR(dob)  as year_of_birth 
+	FROM staff;
+
+17) Using the concat keyword combine the columns street_address, town and postcode to one column. Seperate the columns with a comma.
+
+	SELECT firstname, surname, concat(street_address, ', ', town, ' ', postcode) as address 
+	FROM staff;
+
+18) Select all the fields and add a column age where you calculate the age of the staff based on the current date CURRENT_TIMESTAMP. 
+
+	SELECT *, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), dob)), "%Y")+0 AS age
+	FROM staff;
+
+19) Use count and group by on the above select statement to calculate the number of people for each age.
+
+	SELECT count(*), DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), dob)), "%Y")+0 AS age 
+	FROM staff 
+	GROUP BY age;
+
+20) Calculate the average salary for each age group.
+
+	SELECT avg(salary), DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), dob)), "%Y")+0 AS age 
+	FROM staff 
+	GROUP BY age;
+
+21) Use a nested select statement to return the firstname and surname of the staff that has the highest salary.
+
+	SELECT firstname, surname, salary 
+	FROM staff 
+	WHERE salary = (SELECT MAX(salary) FROM staff);
+
+22) Use a nested select statement to the firstname, surname and how much their salary differs from the average salary. Sort the table by this new column.
+
+	SELECT firstname, surname, salary - (SELECT AVG(salary) FROM Staff) as salary_diff 
+	FROM staff 
+	ORDER BY salary_diff;

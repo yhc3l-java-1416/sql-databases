@@ -18,6 +18,8 @@ b) 18 was in the list
 48
 14
 46
+31
+19
 
 c) 1000 was in the list
 48

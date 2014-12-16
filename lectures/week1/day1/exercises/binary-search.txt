@@ -10,8 +10,14 @@ Write down the numbers the computer would look at if you asked if:
 
 a) 2 was in the list.
 
+
+
 b) 18 was in the list
 
+
+
 c) 1000 was in the list
+
+
 
 d) 95 was in the list

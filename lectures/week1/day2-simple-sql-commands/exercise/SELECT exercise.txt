@@ -1,0 +1,44 @@
+1) Select all the columns in the table.
+
+2) Select all the columns in the table with a surname of Doyle.
+
+3) Select all the columns in the table with a surname that contains the string le.
+
+4) Select the firstname and surname of all the staff with a letter b in their firstname or in their surname.
+
+5) Select the firstname, surname and salary of the staff with a salary greater than 25000.
+
+6) Count (using sql), the number of staff that earn less than 25000.
+
+7) Count the number of staff that earn greater than 20000 but less than 25000.
+
+8) Select the firstname and surname of all staff but using the 'as' keyword translate the column titles to Swedish ie. fornamn, efternamn.   
+
+9) Select a table that has three columns and one row containing the minimum, maximum and average salary of all the staff.
+
+10) Select everything from the table, use the order by keywords to sort the table alphabetically by surname.
+
+11) Reverse the order of the selection.
+
+12) Now order the selection first by firstname and then by surname.
+
+13) Use the limit keyword to return the first 10 members of staff.
+
+14) Use the limit keyword to return only the rows 10 to 20 from the table.
+
+15) Use the limit keyword to return only the rows 20 to 30.
+
+Advanced
+16) Select only the year from the dob column for all floggit staff.
+
+17) Using the concat function, combine the columns street_address, town and postcode to one column. Separate the combined columns with a comma.
+
+18) Select all the fields and add a column age where you calculate the age of the staff based on the current date CURRENT_TIMESTAMP. 
+
+19) Use count and group by on the above select statement to calculate the number of people for each age.
+
+20) Calculate the average salary for each age group.
+
+21) Use a nested select statement to return the firstname and surname of the staff that has the highest salary.
+
+22) Use a nested select statement to return the firstname, surname and how much their salary differs from the average salary. Sort the table by this new column.

@@ -1,0 +1,30 @@
+1) Insert Richy Rich a new member of staff into the staff table.  He has a salary of 78000. The other information you don't know yet.
+
+	INSERT INTO staff 
+	(firstname, surname, salary) 
+	VALUES 
+	('Richy', 'Rich', 78000);
+
+2) Insert details about yourself into the staff table, fill in every column.
+
+	INSERT INTO staff 
+	(firstname, surname, dob, street_address, town, postcode, mobile, email, salary) 
+	VALUES 
+	('Tom', 'Blackmore', '1976-04-21', '2 Studland Road', 'Kingston-Upon-Thames', 'KT2 5HJ', '0208 546 2786', 'tom.blackmore@arctictiger.se', 37000);
+
+3) Update Richy Rich give him a dob of 1989-03-12 and an address of 12 Huttington Drive, Cambridge CB12 279.
+
+	UPDATE staff 
+	SET dob = '1989-03-12', street_address = '12 Huntington Drive', town = 'Cambridge', postcode = 'CB12 279' 
+	WHERE firstname = 'Richy' and surname = 'Rich';
+
+4) Update all people who are older than 45 and give them a pay rise of 1000.
+	
+	UPDATE staff
+	SET salary = salary + 1000
+	WHERE YEAR(CURRENT_TIMESTAMP) - YEAR(dob) - (MONTH(CURRENT_TIMESTAMP) < MONTH(dob)) > 45;
+
+5) Delete yourself from the table
+
+	DELETE FROM Staff 
+ 	WHERE firstname = 'Tom' and Surname = 'Blackmore';

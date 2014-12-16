@@ -1,0 +1,20 @@
+
+CREATE TABLE people
+(
+	id mediumint(8) unsigned NOT NULL auto_increment,
+	firstname varchar(255) NOT NULL,
+	surname varchar(255) NOT NULL,
+	address varchar(255) default NULL,
+	city varchar(255) default NULL,
+	UNIQUE(city),
+	PRIMARY KEY (id)
+) AUTO_INCREMENT=1;
+
+INSERT INTO people (firstname, city) VALUES ('Tom', 'Bristol');
+# won't work surname can't be null
+
+INSERT INTO people (firstname, surname, city) VALUES ('Tom', 'Blackmore', 'Bristol');
+# will work
+
+INSERT INTO people (firstname, surname, city) VALUES ('Tom', 'Blackmore', 'Bristol');
+# won't work city must be unique we would have 2 Bristols
