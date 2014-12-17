@@ -1,0 +1,30 @@
+1) Reset your staff table by rerunning the staff.sql file.
+2) Create a table called departments. The table should have the following columns:
+
+		id - mediumint(8) primary key autoincrement.
+		dept_name - varchar of suitable length. It should also be a required and unique. It will store the departments name.
+		boss_id - mediumint(8). This field will save a foreign key to the boss of the department.
+
+3) Use select statements on the staff table to find the ids of the following individuals and make a note of their ids.
+
+	Dane Gray who will be incharge of accounts
+	Nina Lang who will be incharge of marketing
+	Daquan Flynn who will be incharge of business development
+	Joseph Barron who will be incharge of research
+	Dustin Perez who will be incharge of software development
+
+
+4) Now populate the departments table. (hint department names are listed above, and you have just found the id to the bosses of each department).
+4b) Add a another department called "New department" we don't know who will be boss so leave that column blank.
+
+5) Alter the staff table adding a new mediumint(8) column called department_id. 
+
+
+6) 	Now we need to add staff to the departments.
+6a) Manually update our bosses in the staff table and set the department_id column to their departments.
+6b) Put a few more staff into departments each department, with the exception of the "New department".
+
+
+
+
+

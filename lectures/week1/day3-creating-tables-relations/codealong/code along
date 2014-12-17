@@ -1,0 +1,40 @@
+#------------------ONE to ONE and ONE to MANY ------------------------------#
+#Inner join
+SELECT firstname, surname, dept_name FROM staff INNER JOIN departments ON departments.id = staff.department_id ORDER BY dept_name, surname;
+# The same as
+SELECT firstname, surname, dept_name FROM staff, departments WHERE departments.id = staff.department_id ORDER BY dept_name, surname;
+#Left outer join
+SELECT firstname, surname, dept_name FROM staff LEFT OUTER JOIN departments ON departments.id = staff.department_id ORDER BY dept_name, surname;
+#Right outer join
+SELECT firstname, surname, dept_name FROM staff RIGHT OUTER JOIN departments ON departments.id = staff.department_id ORDER BY dept_name, surname;
+#Full outer join
+SELECT firstname, surname, dept_name FROM staff LEFT OUTER JOIN departments ON departments.id = staff.department_id 
+UNION
+SELECT firstname, surname, dept_name FROM staff RIGHT OUTER JOIN departments ON departments.id = staff.department_id ORDER BY dept_name, surname;
+#Cross join example
+SELECT firstname, surname, dept_name FROM staff CROSS JOIN departments;
+
+
+#------------------MANY TO MANY ----------------#
+#Inner join
+SELECT firstname, surname, club_name FROM staff INNER JOIN staff_clubs ON staff_clubs.staff_id = staff.id INNER JOIN  clubs ON clubs.id = staff_clubs.club_id ORDER BY club_name, surname;
+#Left join
+SELECT firstname, surname, club_name FROM staff LEFT OUTER JOIN staff_clubs ON staff_clubs.staff_id = staff.id LEFT OUTER JOIN  clubs ON clubs.id = staff_clubs.club_id ORDER BY club_name, surname;
+#RIGHT join
+SELECT firstname, surname, club_name FROM staff RIGHT OUTER JOIN staff_clubs ON staff_clubs.staff_id = staff.id RIGHT OUTER JOIN  clubs ON clubs.id = staff_clubs.club_id ORDER BY club_name, surname;
+#Full outer join
+SELECT firstname, surname, club_name FROM staff LEFT OUTER JOIN staff_clubs ON staff_clubs.staff_id = staff.id LEFT OUTER JOIN  clubs ON clubs.id = staff_clubs.club_id 
+UNION 
+SELECT firstname, surname, club_name FROM staff RIGHT OUTER JOIN staff_clubs ON staff_clubs.staff_id = staff.id RIGHT OUTER JOIN  clubs ON clubs.id = staff_clubs.club_id;
+#Cross join
+SELECT firstname, surname, club_name FROM staff CROSS JOIN clubs;
+
+SELECT count(clubs.id) as number_of_clubs, firstname, surname 
+FROM staff INNER JOIN staff_clubs ON staff_clubs.staff_id = staff.id INNER JOIN  clubs ON clubs.id = staff_clubs.club_id;
+GROUP BY firstname, surname
+ORDER BY number_of_clubs DESC;
+
+SELECT count(staff.id) as number_of_staff, club_name
+FROM staff RIGHT OUTER JOIN staff_clubs ON staff_clubs.staff_id = staff.id RIGHT OUTER JOIN  clubs ON clubs.id = staff_clubs.club_id
+GROUP BY club_name
+ORDER BY number_of_staff DESC;

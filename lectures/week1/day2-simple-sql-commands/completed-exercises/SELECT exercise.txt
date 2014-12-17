@@ -13,13 +13,13 @@
 
 	SELECT * 
 	FROM staff 
-	WHERE surname like '%le%';
+	WHERE surname LIKE '%le%';
 
 4) Select the firstname and surname of all the staff with a letter b in their firstname or in their surname.
 
 	SELECT firstname, surname 
 	FROM staff 
-	WHERE surname like '%b%' or firstname like '%b%';
+	WHERE surname LIKE '%b%' OR firstname LIKE '%b%';
 
 5) Select the firstname, surname and salary of the staff with a salary greater than 25000.
 
@@ -29,19 +29,19 @@
 
 6) Count (using sql), the number of staff that earn less than 25000.
 
-	SELECT count(firstname) 
+	SELECT COUNT(*) 
 	FROM staff 
 	WHERE salary < 25000;
 
 7) Count the number of staff that earn greater than 20000 but less than 25000.
 
-	SELECT count(firstname) 
+	SELECT COUNT(*) 
 	FROM staff 
 	WHERE salary > 20000 AND salary < 25000;
 
 8) Select the firstname and surname of all staff but using the 'as' keyword give translate the column titles to Swedish fornamn, efternamn.   
 
-	SELECT firstname as fornamn, surname as efternamn
+	SELECT firstname AS fornamn, surname AS efternamn
 	FROM staff
 
 9) Select a table that has three columns and one row containing the minimum, maximum and average salary of all the staff.
@@ -72,9 +72,9 @@
 	SELECT * 
 	FROM staff  
 	ORDER BY surname 
-	LIMIT 0,10;
+	LIMIT 0, 10;
 
-14) Use the limit keyword to return only the rows 10 to 20 from the table.
+14) Use the limit keyword to return only the rows 11 to 20 from the table.
 
 	SELECT * 
 	FROM staff  
@@ -96,7 +96,7 @@ Advanced
 
 17) Using the concat keyword combine the columns street_address, town and postcode to one column. Seperate the columns with a comma.
 
-	SELECT firstname, surname, concat(street_address, ', ', town, ' ', postcode) as address 
+	SELECT firstname, surname, CONCAT(street_address, ', ', town, ' ', postcode) as address 
 	FROM staff;
 
 18) Select all the fields and add a column age where you calculate the age of the staff based on the current date CURRENT_TIMESTAMP. 
@@ -106,13 +106,13 @@ Advanced
 
 19) Use count and group by on the above select statement to calculate the number of people for each age.
 
-	SELECT count(*), DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), dob)), "%Y")+0 AS age 
+	SELECT COUNT(*), DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), dob)), "%Y")+0 AS age 
 	FROM staff 
 	GROUP BY age;
 
 20) Calculate the average salary for each age group.
 
-	SELECT avg(salary), DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), dob)), "%Y")+0 AS age 
+	SELECT AVG(salary), DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), dob)), "%Y")+0 AS age 
 	FROM staff 
 	GROUP BY age;
 

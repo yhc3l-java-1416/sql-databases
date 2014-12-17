@@ -1,0 +1,28 @@
+Execute the exercise.sql to create all the relevant tables and data to run this exercise.
+
+One to many and one to one working with departments.
+
+1) Use a join to display a table of bosses. The table should show the name of the department the firstname, surname, email and telephone number to it's boss.
+2) Use a join to showing all the staff and the name of their department.
+3) Use a join to show firstname, surnamme and department name. The table should include all staff even if they don't have a department.
+4) Select firstname, surnamme and department name of all the staff and all the departments (including those that are not related).
+5) Select the name of the department and the number of staff in each department (make sure you even have departments that have no staff in the list).
+6) Select the name of the department whose boss earns the most money.
+7) Select the name of the department with staff that have the highest average salary.
+8) Change the name of the department Accounts to Money counters.
+9) Use an inner join to create a table showing the id from the departments table and the id from the staff table.
+10) Alter the table departments and add a column for city. It will store the name of the city the department is located in.
+11) Update the departments table so accounts and marketing are in the city of Stockholm all the others are in Hallstahammar. (See if you can use "in" and "not in" in your where statement to achieve this. Google "sql in" and "sql not in" to see how they work).
+12) How many people work in Stockholm?
+13) Your boss needs to send an email to all the people who work in the Hallstahammar office because the electricty will be off next Friday. Retrieve a list of email addresses to all that work in Hallstahammar.
+
+Many to many working with clubs table
+
+1) Show a list of staff and the clubs that they are members of.
+2) Floggit is going to sponsor clubs based on the number of staff that are members of them, create a list of clubs with number of members. Include in the list all clubs even those that have no staff members.
+3) Select all the staff that are members of 3 or more clubs as your worried it might effect their work.
+4) Can you also include their department name.
+5) Create a list of all the clubs that people in the accounts department are members of.
+
+
+

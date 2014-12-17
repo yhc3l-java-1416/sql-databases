@@ -1,0 +1,128 @@
+One to many and one to one working with departments.
+
+1) Use a join to display a table of bosses. The table should show the name of the department the firstname, surname, email and telephone number to it's boss.
+
+SELECT dept_name, firstname, surname 
+FROM departments LEFT OUTER JOIN staff ON staff.id = departments.boss_id;
+
+2) Use a join to showing all the staff and the name of their department.
+
+SELECT staff.*, dept_name
+FROM staff INNER JOIN departments ON staff.department_id = departments.id;
+
+3) Use a join to show firstname, surnamme and department name. The table should include all staff even if they don't have a department.
+
+SELECT firstname, surname, dept_name
+FROM staff LEFT OUTER JOIN departments ON staff.department_id = departments.id;
+
+4) Select firstname, surnamme and department name of all the staff and all the departments (including those that are not related).
+
+SELECT firstname, surname, dept_name
+FROM staff LEFT OUTER JOIN departments ON staff.department_id = departments.id
+UNION
+SELECT firstname, surname, dept_name
+FROM staff RIGHT OUTER JOIN departments ON staff.department_id = departments.id
+ORDER BY dept_name, surname, firstname;
+
+5) Select the name of the department and the number of staff in each department (make sure you even have departments that have no staff in the list).
+
+SELECT dept_name, count(staff.id)
+FROM departments LEFT OUTER JOIN staff ON staff.department_id = departments.id
+GROUP BY dept_name;
+
+6) Select the name of the department whose boss earns the most money.
+
+SELECT dept_name, firstname, surname, salary 
+FROM departments INNER JOIN staff ON staff.id = departments.boss_id
+WHERE salary = 	(SELECT max(salary) 
+				FROM departments INNER JOIN staff ON staff.id = departments.boss_id);
+
+7) Select the name of the department with staff that have the highest average salary.
+
+SELECT dept_name 
+FROM 	(SELECT dept_name, avg(salary) as avg_salary 
+		FROM departments INNER JOIN staff ON departments.id = staff.department_id 
+		GROUP BY dept_name
+		ORDER BY avg_salary DESC
+		LIMIT 1) as tmp;
+
+8) Change the name of the department Accounts to Money counters.
+
+UPDATE departments SET dept_name = 'Money Counters' WHERE id = 1;
+
+9) Use an inner join to create a table showing the id from the departments table and the id from the staff table.
+
+SELECT staff.id, departments.id 
+FROM STAFF INNER JOIN departments ON departments.id = staff.department_id;
+
+10) Alter the table departments and add a column for city. It will store the name of the city the department is located in.
+
+ALTER TABLE departments ADD COLUMN city varchar(64);
+
+11) Update the departments table so accounts and marketing are in the city of Stockholm all the others are in Hallstahammar. (See if you can use "in" and "not in" in your where statement to achieve this. Google "sql in" and "sql not in" to see how they work).
+
+UPDATE departments SET city = "Stockholm" WHERE id in (1,2);
+UPDATE departments SET city = "Hallstahammar" WHERE id not in (1,2);
+
+12) How many people work in Stockholm?
+
+SELECT count(staff.id) as employee_count, departments.city 
+FROM staff INNER JOIN departments ON departments.id = staff.department_id WHERE departments.city = 'Stockholm';
+
+13) Your boss needs to send an email to all the people who work in the Hallstahammar office because the electricity will be off next Friday. Retrieve a list of email addresses to all that work in Hallstahammar.
+
+SELECT email FROM staff INNER JOIN departments ON departments.id = staff.department_id WHERE departments.city = 'Hallstahammar';
+
+Many to many working with clubs table
+1) Show a list of staff and the clubs that they are members of.
+
+SELECT staff.*, club_name 
+FROM staff 
+LEFT JOIN staff_clubs ON staff.id = staff_clubs.staff_id 
+LEFT JOIN clubs ON clubs.id = staff_clubs.club_id;
+
+2) Floggit is going to sponsor clubs based on the number of staff that are members of them, create a list of clubs with number of members. Include in the list all clubs even those that have no staff members.
+
+SELECT count(staff.id) as employee_count, club_name 
+FROM staff 
+RIGHT JOIN staff_clubs ON staff.id = staff_clubs.staff_id 
+RIGHT JOIN clubs ON clubs.id = staff_clubs.club_id
+GROUP BY club_name 
+ORDER BY employee_count DESC, club_name;
+
+3) Select all the staff that are members of 3 or more clubs as your worried it might effect their work.
+
+SELECT * 
+FROM
+	(SELECT staff.id, firstname, surname, count(clubs.id) as club_count
+	FROM staff 
+	INNER JOIN staff_clubs ON staff.id = staff_clubs.staff_id 
+	INNER JOIN clubs ON clubs.id = staff_clubs.club_id
+	GROUP BY staff.id 
+	ORDER BY club_count DESC, surname) as tmp
+WHERE club_count >= 3;
+
+4) Can you also include their department name.
+
+SELECT * 
+FROM
+	(SELECT staff.id,  firstname, surname, dept_name, count(clubs.id) as club_count
+	FROM staff 
+	LEFT JOIN staff_clubs ON staff.id = staff_clubs.staff_id 
+	LEFT JOIN clubs ON clubs.id = staff_clubs.club_id
+	LEFT JOIN departments ON departments.id = staff.department_id
+	GROUP BY staff.id 
+	ORDER BY club_count DESC, surname) as tmp
+WHERE club_count >= 3;
+
+5) Create a list of all the clubs that people in the accounts department are members of.
+
+SELECT DISTINCT club_name
+FROM staff 
+INNER JOIN staff_clubs ON staff.id = staff_clubs.staff_id 
+INNER JOIN clubs ON clubs.id = staff_clubs.club_id
+INNER JOIN departments ON departments.id = staff.department_id
+WHERE departments.id = 1
+ORDER BY club_name;
+
+
