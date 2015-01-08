@@ -1,0 +1,13 @@
+1) Load the exercise.sql in your mysql database.
+
+2) Create a new user in mysql that can only select from the Staff and Departments tables.
+
+2) Verify that this works from java by connecting to the database as the new user and using a select statement to retrieve a member of staff.
+
+3) Now test selecting all rows from the Clubs table(this should fail).
+
+4) Create an employee class to hold the data about employees. Override the toString method so you can pretty print an employee in the terminal.
+
+5) Create a get employees by surname method. The method should return a collection of employees instead of just printing out to the terminal. In your main method call your method you just created and iterate through the collection printing out the information about employees to the terminal by using the employee toString method.
+
+

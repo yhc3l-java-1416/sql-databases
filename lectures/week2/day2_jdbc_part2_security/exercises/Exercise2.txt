@@ -1,0 +1,10 @@
+1) Create a new user with the ability to select, insert and update the departments and staff tables.
+
+2) Complete the following task as a transaction. Only commit the changes if all steps complete. If one stage fails rollack the entire transaction.
+
+a) Create a new department called caretakers.
+b) With help of getGeneratedKeys method get the value of the id for the Caretakers department.
+c) Create a new member of staff that is a member of caretakers (department_id should be set to the id collected in step 2)
+d) With help of getGeneratedKeys method get the value of the id for the member of staff you created in step 3.
+e) Update caretakers department and set the boss_id to be the same as the new member of staff, the id you collected at step 4.
+
